@@ -24,7 +24,7 @@ const UsuarioSchema=Schema({
     enum:['ADMIN_ROLE','USER_ROLE']
   },
   status:{
-    type:String,
+    type:Boolean,
     default:true
   },
   google:{

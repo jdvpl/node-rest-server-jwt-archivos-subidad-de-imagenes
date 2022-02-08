@@ -1,5 +1,5 @@
 const {response}=require('express')
-
+const User= require('../models/user')
 
 const userGet=(req, res=response) => {
   const {q,api,name="Sin nombre"}=req.query;
@@ -22,13 +22,16 @@ const userPut=(req, res=response) => {
     }
     );
 }
-const userPost=(req, res) => {
+const userPost=async(req, res) => {
 
-  const {name,age}=req.body;
+  const body=req.body;
+
+  const user=new User(body);
+  await user.save()
   res.json(
     {
       "Post":"aaJAa",
-      name,age
+      user
     }
     );
 }
