@@ -3,4 +3,4 @@ Continuacion del servidor anterior que era basico en este si incluye bases de da
 
 
 ### Librerias
-``` npm i express dotenv mongoose ```
+``` npm i express dotenv mongoose bcryptjs express-validator```
