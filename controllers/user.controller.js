@@ -42,12 +42,7 @@ const userPost=async(req, res) => {
   user.password=bcrypt.hashSync(password,salt);
   // guardar en la base de datos
   await user.save()
-  res.json(
-    {
-      "Post":"aaJAa",
-      user
-    }
-    );
+  res.json(user);
 }
 const userDelete=(req, res) => {
   res.json(
