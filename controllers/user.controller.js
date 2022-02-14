@@ -1,7 +1,6 @@
 const {response}=require('express')
 const bcrypt=require('bcryptjs')
 const User= require('../models/user');
-const { validationResult } = require('express-validator');
 
 const userGet=(req, res=response) => {
   const {q,api,name="Sin nombre"}=req.query;
@@ -26,19 +25,10 @@ const userPut=(req, res=response) => {
 }
 const userPost=async(req, res) => {
 
-  const errors=validationResult(req);
-
-  if(!errors.isEmpty()){
-    return res.status(400).json(errors);
-  }
-
+  
   const {name,email,role,password}=req.body;
-
-  const user=new User({name,email,role,password});
-
-
+  const user=new User({name,email,role,password})
   // verificar si el correo existe
-
   const existsEmail=await User.findOne({email});
 
   if (existsEmail){
