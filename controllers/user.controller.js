@@ -2,16 +2,13 @@ const {response}=require('express')
 const bcrypt=require('bcryptjs')
 const User= require('../models/user');
 
-const userGet=(req, res=response) => {
-  const {q,api,name="Sin nombre"}=req.query;
-  res.json(
-    {
-      "Get":"Desde el controller",
-      q,
-      api,
-      name
-    }
-    );
+const userGet=async(req, res=response) => {
+  
+  const {limite=5, desde=0}=req.query;
+  const usuarios=await User.find()
+  .skip(Number(desde))
+  .limit(Number(limite));
+  res.json(usuarios);
 }
 
 const userPut=async(req, res=response) => {

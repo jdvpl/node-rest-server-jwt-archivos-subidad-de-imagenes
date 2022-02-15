@@ -6,7 +6,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const router=Router();
 
 
-router.get('/', userGet);
+router.get('/',userGet);
 router.put('/:id',
   [
     check('id', "No es un id valido").isMongoId(),
