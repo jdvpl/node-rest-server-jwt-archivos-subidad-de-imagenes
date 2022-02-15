@@ -17,8 +17,16 @@ const existeCorreo=async(email='')=>{
       throw new Error(`El Correo ${email} ya existe`);
     }
 }
+const existeID=async(id='')=>{
+    // verificar si el correo existe
+    const existsID=await Usuario.findById(id);
+    if (!existsID){
+      throw new Error(`El id ${id} no existe`);
+    }
+}
 
 module.exports ={
   esRoleValido,
-  existeCorreo
+  existeCorreo,
+  existeID
 }
