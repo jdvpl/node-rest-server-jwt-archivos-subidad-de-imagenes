@@ -14,13 +14,20 @@ const userGet=(req, res=response) => {
     );
 }
 
-const userPut=(req, res=response) => {
+const userPut=async(req, res=response) => {
   const id=req.params.id;
+  const {password,google,email, ...resto}=req.body;
+  //  validar con la base de datos
+
+  if(password){
+    const salt=bcrypt.genSaltSync();
+    resto.password=bcrypt.hashSync(password,salt);
+  }
+
+  const usuario=await User.findByIdAndUpdate(id, resto)
   console.log(id);
   res.json(
-    {
-      "Put":"aa"
-    }
+    usuario
     );
 }
 const userPost=async(req, res) => {
