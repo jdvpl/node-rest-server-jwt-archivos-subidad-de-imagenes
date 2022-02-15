@@ -46,11 +46,15 @@ const userPost=async(req, res) => {
   await user.save()
   res.json(user);
 }
-const userDelete=(req, res) => {
+const userDelete=async(req, res) => {
+  const {id} = req.params
+
+  // /boarrar fisicamente no recomendable
+  // const usuario =await User.findByIdAndDelete(id)
+  const usuario =await User.findByIdAndUpdate(id,{ status:false})
+
   res.json(
-    {
-      "Delete":"aa"
-    }
+    usuario
     );
 }
 
