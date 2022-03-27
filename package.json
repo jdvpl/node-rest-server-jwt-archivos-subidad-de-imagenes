@@ -1,0 +1,32 @@
+{
+  "name": "5node-rest-server",
+  "version": "1.0.0",
+  "description": "Este es un servidor en node rest que hae peticiones http, post, put,delete, get",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdvpl/node-rest-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdvpl/node-rest-server/issues"
+  },
+  "homepage": "https://github.com/jdvpl/node-rest-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "google-auth-library": "^7.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.1",
+    "nodemon": "^2.0.15"
+  }
+}
