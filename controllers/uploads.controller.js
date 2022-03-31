@@ -1,9 +1,12 @@
+const path = require("path")
+const fs=require("fs")
+
 const { response } = require("express");
 const { uploadFiles } = require("../helpers/upload-validator");
 const {User,Producto} =require("../models")
 
-const uploadFile=async(req,res=response) => {
 
+const uploadFile=async(req,res=response) => {
   const extensionesValidas=["png", "jpg", "jpeg", "gif"];
   try {
     // const pathFile= await uploadFiles(req.files,extensionesValidas,"kakaroto")
@@ -36,15 +39,18 @@ const updateImageDb=async (req, res) => {
     default:
       return res.status(500).json({msg: `Se me olvido validar esta parte.`})
   }
-
-
+    // limpiar imagenes previas del usuario
+    if(modelo.img){
+      // hay que borrar la imagen del servidor
+      const pathImagen=path.join( __dirname,'../uploads/',collection,modelo.img);
+      if(fs.existsSync(pathImagen)){
+        fs.unlinkSync(pathImagen);
+      }
+    }
     const nombre= await uploadFiles(req.files,undefined,collection)
     modelo.img=nombre;
-    console.log(modelo)
     await modelo.save();
     return res.status(200).json(modelo);
- 
-  
 }
 
 module.exports ={
