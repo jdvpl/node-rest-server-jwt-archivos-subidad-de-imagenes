@@ -1,7 +1,6 @@
 const { response } = require("express");
 const path = require("path")
 
-console.log(path)
 const uploadFile=(req,res=response) => {
 
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -13,18 +12,28 @@ const uploadFile=(req,res=response) => {
     return;
   }
 
+  // validar la extension
+  const extensionesValidas=["png", "jpg", "jpeg", "gif"]
 
   const {file} = req.files;
 
-  const uploadPath =path.join( __dirname, '../uploads/' + file.name);
+  const nombreCortado=file.name.split('.');
+  const extension=nombreCortado[nombreCortado.length - 1];
 
-  file.mv(uploadPath, (err)=> {
-    if (err) {
-      return res.status(500).json({err});
-    }
+  if(!extensionesValidas.includes(extension)){
+    return res.status(400).json({msg: `La extension ${extension} no es permitida, ${extensionesValidas}`})
+  }
+  res.json({extension})
 
-    res.json({msg:'El archivo se subio a ' + uploadPath});
-  });
+  // const uploadPath =path.join( __dirname, '../uploads/' + file.name);
+
+  // file.mv(uploadPath, (err)=> {
+  //   if (err) {
+  //     return res.status(500).json({err});
+  //   }
+
+  //   res.json({msg:'El archivo se subio a ' + uploadPath});
+  // });
 }
 
 module.exports ={
