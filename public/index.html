@@ -58,7 +58,7 @@
           const image=document.getElementById('image');
           email.innerHTML =resp.usuario.email
           name.innerHTML =resp.usuario.name
-          image.src =resp.usuario.image
+          image.src =resp.usuario.img
           localStorage.setItem('email',resp.usuario.email)
         })
         .catch(console.warn()

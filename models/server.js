@@ -54,7 +54,8 @@ class Server{
     // /middleware de la suida dei magenes
     this.app.use(fileUpload({
       useTempFiles : true,
-      tempFileDir : '/tmp/'
+      tempFileDir : '/tmp/',
+      createParentPath:true
   }));
   }
 }

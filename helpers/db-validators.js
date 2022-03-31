@@ -22,8 +22,9 @@ const existeID=async(id='')=>{
     // verificar si el correo existe
     const existsID=await Usuario.findById(id);
     if (!existsID){
-      throw new Error(`El id ${id} no existe`);
+      throw new Error(`El usuario con id ${id} no existe`);
     }
+    return true;
 }
 const existeCategoriaById=async(id='')=>{
   // verificar si el la categoria existe
@@ -45,6 +46,17 @@ const existeProductoById=async(id='')=>{
   if (!existsID){
     throw new Error(`El producto con el id: ${id} no existe`);
   }
+  return true;
+}
+// validar colecciones permitidas
+const coleecionesPermitidas =(coleccion='',colecciones=[])=>{
+  const includes=colecciones.includes(coleccion);
+
+  if(!includes){
+    throw new Error(`La coleccion ${coleccion} no es permitida. ${colecciones}` )
+  }
+
+  return true;
 }
 module.exports ={
   esRoleValido,
@@ -52,5 +64,6 @@ module.exports ={
   existeID,
   existeCategoriaById,
   existeCategoriaProducto,
-  existeProductoById
+  existeProductoById,
+  coleecionesPermitidas
 }

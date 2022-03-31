@@ -49,6 +49,9 @@ const ProductoSchema=Schema({
     type: Array,
     required:true,
   },
+  img:{
+    type: String
+  }
 });
 
 ProductoSchema.methods.toJSON=function(){
