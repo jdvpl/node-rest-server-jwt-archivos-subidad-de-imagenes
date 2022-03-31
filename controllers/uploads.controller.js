@@ -1,42 +1,17 @@
 const { response } = require("express");
-const path = require("path")
+const { uploadFiles } = require("../helpers/upload-validator");
 
-const {v4:uuidv4}=require("uuid")
 
-const uploadFile=(req,res=response) => {
+const uploadFile=async(req,res=response) => {
 
-  if (!req.files || Object.keys(req.files).length === 0) {
-    res.status(400).json({msg: 'No hay archivos.'});
-    return;
-  }
-  if (!req.files.file) {
+  if (!req.files || Object.keys(req.files).length === 0 || !req.files.file) {
     res.status(400).json({msg: 'No hay archivos para subir.'});
     return;
   }
 
-  // validar la extension
-  const extensionesValidas=["png", "jpg", "jpeg", "gif"]
+  const pathFile= await uploadFiles(req.files)
+  res.status(200).json({msg:pathFile});
 
-  const {file} = req.files;
-
-  const nombreCortado=file.name.split('.');
-  const extension=nombreCortado[nombreCortado.length - 1];
-
-  if(!extensionesValidas.includes(extension)){
-    return res.status(400).json({msg: `La extension ${extension} no es permitida, ${extensionesValidas}`})
-  }
-
-  const nametemp=uuidv4()+'.'+extension;
-
-  const uploadPath =path.join( __dirname, '../uploads/' + nametemp);
-
-  file.mv(uploadPath, (err)=> {
-    if (err) {
-      return res.status(500).json({err});
-    }
-
-    res.json({msg:'El archivo se subio a ' + uploadPath});
-  });
 }
 
 module.exports ={
