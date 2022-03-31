@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 const { dbConection } = require('../database/database');
 class Server{
   constructor(){
@@ -49,6 +50,12 @@ class Server{
     this.app.use(express.json())
     // directorio publico
     this.app.use(express.static("public"));
+
+    // /middleware de la suida dei magenes
+    this.app.use(fileUpload({
+      useTempFiles : true,
+      tempFileDir : '/tmp/'
+  }));
   }
 }
 
