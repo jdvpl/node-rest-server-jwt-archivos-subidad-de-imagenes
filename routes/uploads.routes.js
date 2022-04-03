@@ -9,9 +9,18 @@ const router=Router();
 
 
 router.post('/',isFileUploaded, uploadFile);
+
 router.put('/:collection/:id',
   [
     isFileUploaded,
+    check('id','El id debe ser de mongo').isMongoId(),
+    check('collection').custom(c => coleecionesPermitidas(c , ['users','productos'])),
+    validarCampos
+  ],
+updateImageDb);
+
+router.get('/:collection/:id',
+  [
     check('id','El id debe ser de mongo').isMongoId(),
     check('collection').custom(c => coleecionesPermitidas(c , ['users','productos'])),
     validarCampos
