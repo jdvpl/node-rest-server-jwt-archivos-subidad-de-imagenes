@@ -10,7 +10,7 @@ const getMessages=async(req, res=response) => {
     Mensaje.find()
       .skip(Number(desde))
       .limit(Number(limite))
-      .sort({uid:-1})
+      .sort({"_id":-1})
   ])
   res.json({total,limite,desde, mensajes});
 }
