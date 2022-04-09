@@ -19,11 +19,15 @@ git rm .env --cached
 git remote add heroku https://git.heroku.com/jdvpl-rest-server-node.git 
 ```
 
+### ver todas las variables
 
+```
+ heroku config
+```
 ### crear variables de entorno en heroku
 
 ``` 
-heroku config:Set name_variable="*******" 
+heroku config:set name_variable="*******" 
 ```
 
 
