@@ -1,4 +1,3 @@
-const { Categoria, Producto } = require('../models');
 const Role=require('../models/rol');
 const Usuario= require('../models/user');
 
