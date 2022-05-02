@@ -22,10 +22,15 @@ const getMessages=async(req, res=response) => {
 const createMessage = async(req,res=response)=>{
   const name = req.body.name.toUpperCase();
   const message=req.body.message;
+  const phone=req.body.phone;
+  const fecha=new Date().toLocaleString('es-ES', {
+    timeZone: 'America/Bogota'
+  });
   // generar la data al guardar
   const data={
     name,
-    message
+    message,
+    date:fecha,phone,
   }
   try {
     const mensaje=new Mensaje(data);

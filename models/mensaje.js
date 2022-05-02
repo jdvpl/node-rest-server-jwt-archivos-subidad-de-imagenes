@@ -8,6 +8,12 @@ const MensajeSchema=Schema({
   message:{
     type: String,
     required:true,
+  },
+  date:{
+    type:Date,
+  },
+  phone:{
+    type:String,
   }
 });
 
