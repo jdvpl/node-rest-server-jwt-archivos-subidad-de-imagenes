@@ -23,7 +23,8 @@ const createMessage = async(req,res=response)=>{
   const name = req.body.name.toUpperCase();
   const message=req.body.message;
   const phone=req.body.phone;
-  const fecha=new Date.now()
+  const fecha=Date.now()
+  console.log(fecha)
   // generar la data al guardar
   const data={
     name,

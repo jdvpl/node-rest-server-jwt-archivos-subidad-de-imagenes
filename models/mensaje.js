@@ -10,7 +10,7 @@ const MensajeSchema=Schema({
     required:true,
   },
   date:{
-    type:Date,
+    type:Number,
   },
   phone:{
     type:String,
