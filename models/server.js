@@ -14,7 +14,8 @@ class Server{
       products:'/api/products',
       buscar:'/api/search',
       upload:'/api/upload',
-      message:'/api/message'
+      message:'/api/message',
+      messagebd:'/api/messagebd',
     }
 
     // conectar a la base de datos
@@ -37,6 +38,7 @@ class Server{
     this.app.use(this.paths.buscar, require('../routes/search.routes'))
     this.app.use(this.paths.upload, require('../routes/uploads.routes'))
     this.app.use(this.paths.message, require('../routes/messages.routes'))
+    this.app.use(this.paths.messagebd, require('../routes/messagesbd.routes'))
   }
   listen() {
     this.app.listen(this.port, () => {
